@@ -219,7 +219,7 @@ module Mongo
 
       private
         def rebuild_instances(follows) #:nodoc:
-          follows.group_by(&:f_type).inject([]) { |r, (k, v)| r += k.constantize.find(v.map(&:f_id)).to_a }
+          follows.group_by(&:f_type).inject([]) { |r, (k, v)| r += k.constantize.in(id: v.map(&:f_id)).to_a }
           #follow_list = []
           #follows.each do |follow|
           #  follow_list << follow.f_type.constantize.find(follow.f_id)
